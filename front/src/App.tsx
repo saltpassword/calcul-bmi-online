@@ -141,11 +141,6 @@ function App() {
           <Divider />
           <form onSubmit={handleSubmit}>
             <CardContent>
-              {errors.map((error, index) => (
-                <Alert key={index} severity="warning" onClose={() => setErrors(errors.filter((_, i) => i !== index))}>
-                  {error}
-                </Alert>
-              ))}
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <FormControl>
                   <FormLabel>Your weight</FormLabel>
@@ -214,6 +209,11 @@ function App() {
               </CardActions>
             </CardContent>
           </form>
+          {errors.map((error, index) => (
+                <Alert key={index} severity="warning" onClose={() => setErrors(errors.filter((_, i) => i !== index))}>
+                  {error}
+                </Alert>
+              ))}
         </Card>
         <Card variant="outlined" className="card">
           <List>
