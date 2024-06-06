@@ -34,7 +34,7 @@ function App() {
 
   const fetchOldImc = async () => {
     try {
-      const response = await fetch("#");
+      const response = await fetch("https://bmi.plotconform.xyz/all_imc");
       if (!response.ok) {
         throw new Error("Error fetching old IMC data.");
       }
@@ -109,7 +109,7 @@ function App() {
       created_at: new Date().toISOString(), 
     };
 
-    fetch("#", {
+    fetch("https://bmi.plotconform.xyz/imc", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newTodo),
@@ -149,10 +149,10 @@ function App() {
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <FormControl>
                   <FormLabel>Your weight</FormLabel>
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', height: '40px' }}>
                     <Input
                       type="number"
-                      style={{ fontSize: '1.25em' }}
+                      style={{ fontSize: '1.25em', width: '80%', height: '100%' }}
                       placeholder={`Enter weight`}
                       value={kg === "" ? "" : kg.toString()}
                       onChange={handleKgInput}
@@ -162,6 +162,7 @@ function App() {
                       onChange={handleWeightUnitChange}
                       native
                       input={<Input style={{ fontSize: '1.25em' }} />}
+                      style={{width: '20%', height: '100%'}}
                     >
                       <option value="kg">kg</option>
                       <option value="lbs">lbs</option>
@@ -170,11 +171,11 @@ function App() {
                 </FormControl>
                 <FormControl>
                   <FormLabel>Your height</FormLabel>
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', height: '40px' }}>
                     <Input
                       type="number"
                       placeholder={`Enter height`}
-                      style={{ fontSize: '1.25em' }}
+                      style={{ fontSize: '1.25em', width: '80%', height: '100%' }}
                       value={heightValue === "" ? "" : heightValue.toString()}
                       onChange={handleHeightInput}
                     />
@@ -183,6 +184,7 @@ function App() {
                       onChange={handleHeightUnitChange}
                       native
                       input={<Input style={{ fontSize: '1.25em' }} />}
+                      style={{width: '20%', height: '100%'}}
                     >
                       <option value="cm">cm</option>
                       <option value="m">m</option>
@@ -192,19 +194,19 @@ function App() {
                 </FormControl>
               </div>
               <CardActions style={{ padding: '0', paddingTop: '1.5em', width: '100%', height: '35px' }}>
-                <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ width: '100%', height: '50px', display: 'flex', justifyContent: 'space-between' }}>
                   <Button type="submit" variant="contained" disabled={kg === "" || heightValue === ""}>
                     <Typography variant="h6" style={{ fontSize: '1.5em', marginBottom: '0' }} gutterBottom>
                       Submit
                     </Typography>
                   </Button>
                   {display !== null && !isNaN(display) && (
-                    <Typography style={{ fontWeight: 'bold', border: '1px solid black', padding: '0.5em', marginBottom: '0' }} variant="h6" gutterBottom>
-                      Your BMI is: {display}
-                    </Typography>
+                    <Button disableRipple variant="outlined" style={{ maxHeight: '100%', height: '100px', display: 'flex', alignItems: 'center', padding: '0 0.5em', fontSize: '1em', fontWeight: 'bold'}}>
+                        Your BMI is: {display}
+                    </Button>
                   )}
                   {(display !== null && isNaN(display)) && (
-                    <Alert severity="warning" style={{ padding: '0.5em', marginBottom: '0', fontSize: '1.25em', display: 'flex', alignItems: 'center' }}>
+                    <Alert severity="warning" style={{ height: '100%', padding: '0.5em', marginBottom: '0', fontSize: '1.25em', display: 'flex', alignItems: 'center' }}>
                       Invalid BMI value.
                     </Alert>
                   )}

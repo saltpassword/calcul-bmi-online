@@ -65,3 +65,12 @@ async def get_all_imc_route():
     imc_data = get_all_imc()
     formatted_imc_data = [(row[0], row[1], row[2], row[3], format_date(row[4])) for row in imc_data]
     return formatted_imc_data
+
+@app.get("/delete_db/")
+async def delete_db():
+    conn = sqlite3.connect('imc.db')
+    c = conn.cursor()
+    c.execute("DELETE FROM imc")
+    conn.commit()
+    conn.close()
+    return "Done"
