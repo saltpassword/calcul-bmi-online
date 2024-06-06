@@ -34,7 +34,7 @@ function App() {
 
   const fetchOldImc = async () => {
     try {
-      const response = await fetch("https://bmi.plotconform.xyz/all_imc");
+      const response = await fetch("https://bmi.plotconform.xyz/api/");
       if (!response.ok) {
         throw new Error("Error fetching old IMC data.");
       }
@@ -109,7 +109,7 @@ function App() {
       created_at: new Date().toISOString(), 
     };
 
-    fetch("https://bmi.plotconform.xyz/imc", {
+    fetch("https://bmi.plotconform.xyz/api/imc/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newTodo),
